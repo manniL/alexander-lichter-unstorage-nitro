@@ -1,0 +1,12 @@
+---
+
+on:
+  schedule:
+    - cron: '0 13 3 05 *' # 2024-05-03 13:00 UTC (15:00 CEST)
+jobs:
+  make-private:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh repo edit ${{ github.repository }} --visibility public
+        env:
+          GH_TOKEN: ${{ secrets.MAKE_REPO_PUBLIC }}
